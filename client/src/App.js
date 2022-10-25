@@ -1,6 +1,7 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom'
+import {useState, useEffect} from 'react'
+import axios from 'axios'
+import {Routes, Route} from 'react-router-dom'
 import Homepage from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -11,13 +12,20 @@ import About from './pages/About'
 const App = () => {
 
   const [destinations, setDestinations] = useState([])
+  const [user, setUser] = useState(false)
 
   useEffect(() => {
-    fetch('http://127.0.0.1:3000/destinations')
-      .then(r => r.json())
-      .then(data => setDestinations(data));
-    console.log(destinations)
+    axios.get('/destinations')
+      .then(res => setDestinations(res.data));
+    
+    axios.get('/auth')
+      .then(res => {
+        updateUser(res.data)
+      });
   }, [])
+
+
+  const updateUser = (user) => setUser(user)
 
   return (
     <>
@@ -26,7 +34,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/destinations" element={<Destinations destinations={destinations} />} />
         <Route path="/bookings" element={<Bookings />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login updateUser={updateUser}/>} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </>
