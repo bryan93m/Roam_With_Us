@@ -11,13 +11,17 @@ import About from './pages/About'
 
 const App = () => {
 
+  const [destinations, setDestinations] = useState([])
   const [user, setUser] = useState(false)
 
   useEffect(() => {
+    axios.get('/destinations')
+      .then(res => setDestinations(res.data));
+    
     axios.get('/auth')
       .then(res => {
         updateUser(res.data)
-      })
+      });
   }, [])
 
 
@@ -28,7 +32,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route path="/about" element={<About />} />
-        <Route path="/destinations" element={<Destinations />} />
+        <Route path="/destinations" element={<Destinations destinations={destinations} />} />
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/login" element={<Login updateUser={updateUser}/>} />
         <Route path="/register" element={<Register />} />

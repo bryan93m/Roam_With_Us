@@ -1,9 +1,12 @@
 import React from 'react'
+import Destination from "./Destination";
 
-const Destinations = () => {
+function Destinations({ destinations }) {
+  const destination_components = destinations.map(destination => <Destination key={destination.id} destination={destination} />);
+
   return (
     <div>
-        <h1>Destinations</h1>
+      {destination_components}
     </div>
   )
 }
