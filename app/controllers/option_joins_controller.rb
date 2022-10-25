@@ -1,0 +1,2 @@
+class OptionJoinsController < ApplicationController
+end
