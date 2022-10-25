@@ -1,7 +1,7 @@
 import React from 'react'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
-import {Routes, Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Homepage from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -17,7 +17,9 @@ const App = () => {
   useEffect(() => {
     axios.get('/destinations')
       .then(res => setDestinations(res.data));
-    
+  }, [])
+
+  useEffect(() => {
     axios.get('/auth')
       .then(res => {
         updateUser(res.data)
@@ -34,7 +36,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/destinations" element={<Destinations destinations={destinations} />} />
         <Route path="/bookings" element={<Bookings />} />
-        <Route path="/login" element={<Login updateUser={updateUser}/>} />
+        <Route path="/login" element={<Login updateUser={updateUser} />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </>
