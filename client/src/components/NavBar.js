@@ -1,11 +1,19 @@
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import axios from 'axios';
 
 
-function NavBar() {
+function NavBar({updateUser}) {
+    const handleLogout = () => {
+        axios.delete('/logout')
+            .then(res => {
+                updateUser(false)
+            })
+    }
+
     return (
         <nav className='nav'>
                 <ul>
-                    <CustomLink to='/'>Logout</CustomLink>
+                    <CustomLink to='/' onClick={handleLogout}>Logout</CustomLink>
                     <CustomLink to='/destinations'>Destinations</CustomLink>
                     <CustomLink to='/about'>About</CustomLink>
                     <CustomLink to='/bookings'>Bookings</CustomLink>

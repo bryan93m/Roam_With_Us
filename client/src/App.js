@@ -9,6 +9,7 @@ import Destinations from './pages/Destinations'
 import Bookings from './pages/Bookings'
 import About from './pages/About'
 import SingleDestinationPage from './pages/SingleDestinationPage'
+import NavBar from './components/NavBar'
 
 const App = () => {
 
@@ -41,9 +42,11 @@ const App = () => {
   
 
   const updateUser = (user) => setUser(user)
-  
+
+  if(!user) return <Login updateUser={updateUser} />
   return (
     <>
+      <NavBar updateUser={updateUser} />
       <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route path='/destination/:id' element={<SingleDestinationPage singleDestinations={singleDestination} createBooking={createBooking} />} />
