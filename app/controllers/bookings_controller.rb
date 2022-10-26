@@ -17,8 +17,8 @@ class BookingsController < ApplicationController
     end
 
     def destroy
-        booking = Booking.find(params[:id])
-        booking.destroy
+        @booking = current_user.bookings.find(params[:id])
+        @booking.destroy
         render json: {}, status: :no_content
     end
 

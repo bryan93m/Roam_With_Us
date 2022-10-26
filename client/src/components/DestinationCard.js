@@ -27,7 +27,7 @@ function Destination({ destination, singleDestination }) {
         <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={image_url} />
             <Card.Body>
-                <Card.Title onClick={handleSingleDestination} >Name: {name}</Card.Title>
+                <Card.Title onClick={handleSingleDestination} style={{cursor:'pointer'}} >Name: {name}</Card.Title>
 
                 <div>
                     {

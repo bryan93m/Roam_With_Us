@@ -47,6 +47,10 @@ const App = () => {
       .then(res => setBookings(res.data))
   }, [])
   
+  const handleDelete = (id) => {
+    axios.delete(`/bookings/${id}`)
+      .then(res => setBookings(res.data))
+  }
 
   const updateUser = (user) => setUser(user)
 
@@ -59,7 +63,7 @@ const App = () => {
         <Route path='/destination/:id' element={<SingleDestinationPage singleDestinations={singleDestination} createBooking={createBooking} />} />
         <Route path="/about" element={<About />} />
         <Route path="/destinations" element={<Destinations destinations={destinations} singleDestination={getSingleDestination}/>} />
-        <Route path="/bookings" element={<Bookings booking={bookings}/>} />
+        <Route path="/bookings" element={<Bookings booking={bookings} deleteBooking={handleDelete}/>} />
         <Route path="/login" element={<Login updateUser={updateUser}/>} />
         <Route path="/register" element={<Register />} />
       </Routes>
