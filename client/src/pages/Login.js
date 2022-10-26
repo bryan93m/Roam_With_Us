@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 
-const Login = ({updateUser}) => {
+const Login = ({updateUser, getBookings}) => {
   let navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: '',
@@ -33,10 +33,9 @@ const Login = ({updateUser}) => {
     setFormData({...formData, [name]: value})
   }
 
- 
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} >
         <label>Email</label>
         <input type='text' name='email' value={email} onChange={handleChange} />
 

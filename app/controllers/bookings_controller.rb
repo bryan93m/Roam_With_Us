@@ -2,7 +2,8 @@ class BookingsController < ApplicationController
     skip_before_action :authorize_user, only: [:index, :show]
 
     def index
-        render json: Booking.all, status: :ok
+        booking = current_user.bookings.all
+        render json: booking, status: :ok
     end
 
     def show 

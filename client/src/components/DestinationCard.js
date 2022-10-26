@@ -37,10 +37,6 @@ function Destination({ destination, singleDestination }) {
                                 <Card.Text>Description: {description}</Card.Text>
                                 <Card.Text>Season: {season}</Card.Text>
                                 <Card.Text>Price: {price}</Card.Text>
-                                <select>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                </select>
                             </div>
                             :
                             <div>

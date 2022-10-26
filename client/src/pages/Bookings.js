@@ -1,9 +1,11 @@
 import React from 'react'
+import BookingComponent from '../components/BookingComponent'
 
-const Bookings = () => {
+const Bookings = ({booking}) => {
+  const bookings = booking.map(booking => <BookingComponent key={booking.id} booking={booking}/>)
   return (
     <div>
-        <h1>Bookings</h1>
+      {bookings}
     </div>
   )
 }

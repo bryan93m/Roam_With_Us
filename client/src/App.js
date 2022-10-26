@@ -29,6 +29,8 @@ const App = () => {
         updateUser(res.data)
       });
   }, [])
+  
+  
 
   const getSingleDestination = (id) => {
     axios.get(`/destinations/${id}`)
@@ -39,11 +41,16 @@ const App = () => {
     axios.post('/bookings', {destination_id: destinationId, option_id: parseInt(optionId)})
       .then(res => setBookings(res.data))
   }
+
+  useEffect(() => {
+    axios.get('/bookings')
+      .then(res => setBookings(res.data))
+  }, [])
   
 
   const updateUser = (user) => setUser(user)
 
-  if(!user) return <Login updateUser={updateUser} />
+  if(!user) return <Login updateUser={updateUser}/>
   return (
     <>
       <NavBar updateUser={updateUser} />
@@ -52,7 +59,7 @@ const App = () => {
         <Route path='/destination/:id' element={<SingleDestinationPage singleDestinations={singleDestination} createBooking={createBooking} />} />
         <Route path="/about" element={<About />} />
         <Route path="/destinations" element={<Destinations destinations={destinations} singleDestination={getSingleDestination}/>} />
-        <Route path="/bookings" element={<Bookings />} />
+        <Route path="/bookings" element={<Bookings booking={bookings}/>} />
         <Route path="/login" element={<Login updateUser={updateUser}/>} />
         <Route path="/register" element={<Register />} />
       </Routes>
