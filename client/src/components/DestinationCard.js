@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-function Destination({ destination }) {
 
+function Destination({ destination, singleDestination }) {
     const [toggle, setToggle] = useState(false);
+    let navigate = useNavigate();
 
     const { name, season, price, description, image_url } = destination
 
@@ -12,11 +14,20 @@ function Destination({ destination }) {
         setToggle(!toggle)
     }
 
+    const handleSingleDestination = () => {
+        singleDestination(destination.id)
+        navigate(`/destination/${destination.id}`)
+    }
+
+
+
+    
+    
     return (
         <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={image_url} />
             <Card.Body>
-                <Card.Title>Name: {name}</Card.Title>
+                <Card.Title onClick={handleSingleDestination} >Name: {name}</Card.Title>
 
                 <div>
                     {
@@ -26,6 +37,10 @@ function Destination({ destination }) {
                                 <Card.Text>Description: {description}</Card.Text>
                                 <Card.Text>Season: {season}</Card.Text>
                                 <Card.Text>Price: {price}</Card.Text>
+                                <select>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
                             </div>
                             :
                             <div>

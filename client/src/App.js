@@ -8,15 +8,18 @@ import Register from './pages/Register'
 import Destinations from './pages/Destinations'
 import Bookings from './pages/Bookings'
 import About from './pages/About'
+import SingleDestinationPage from './pages/SingleDestinationPage'
 
 const App = () => {
 
   const [destinations, setDestinations] = useState([])
+  const [cart, setCart] = useState([])
+  const [singleDestination, setSingleDestination] = useState([])
   const [user, setUser] = useState(false)
 
   useEffect(() => {
     axios.get('/destinations')
-      .then(res => setDestinations(res.data));
+      .then(res => setDestinations(res.data))
   }, [])
 
   useEffect(() => {
@@ -26,6 +29,17 @@ const App = () => {
       });
   }, [])
 
+  const getSingleDestination = (id) => {
+    axios.get(`/destinations/${id}`)
+      .then(res => setSingleDestination(res.data))
+  }
+  
+  function createUserCart() {
+    axios.post('/bookings')
+      .then(res => {
+        setCart(res.data)
+      })
+  } 
 
   const updateUser = (user) => setUser(user)
 
@@ -33,10 +47,11 @@ const App = () => {
     <>
       <Routes>
         <Route exact path="/" element={<Homepage />} />
+        <Route path='/destination/:id' element={<SingleDestinationPage singleDestinations={singleDestination}/>} />
         <Route path="/about" element={<About />} />
-        <Route path="/destinations" element={<Destinations destinations={destinations} />} />
+        <Route path="/destinations" element={<Destinations destinations={destinations} singleDestination={getSingleDestination}/>} />
         <Route path="/bookings" element={<Bookings />} />
-        <Route path="/login" element={<Login updateUser={updateUser} />} />
+        <Route path="/login" element={<Login updateUser={updateUser} createCart={createUserCart}/>} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </>

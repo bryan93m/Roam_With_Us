@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
 
 
 
@@ -19,30 +20,20 @@ const Login = ({updateUser}) => {
       email,
       password
     }
-    fetch(`/login`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(user)
-    })
+    axios.post('/login', user)
     .then(res => {
-      if(res.ok){
-        res.json().then(user => {
-          updateUser(user)
-          navigate('/')
-        })
-      } else {
-        res.json().then(res => {
-          alert(res.message)
-        })
-      }
-    })
-  }
+      console.log(res.data)
+      updateUser(res.data)
+      navigate('/')
+    }
+    )}
 
   const handleChange = (e) => {
     const {name, value} = e.target
     setFormData({...formData, [name]: value})
   }
 
+ 
   return (
     <>
       <form onSubmit={onSubmit}>
