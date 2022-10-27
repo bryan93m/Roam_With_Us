@@ -46,7 +46,7 @@ h3 {
     justify-content: space-between;
     align-items: center;
     padding: 20px 0;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: none;
     margin-bottom: 60px;
 }
 
@@ -66,7 +66,10 @@ h3 {
 }
 
 .header ul li a:hover {
-    color: #777;
+    color: #3CC2F5;
+}
+.header ul li a:focus {
+    color: #f599b2;
 }
 
 .header ul li a svg {
@@ -160,4 +163,92 @@ h3 {
     borderRadius: 10px;
     backgroundSize: cover;
     backgroundPosition: flex;
+}
+/* Login styles */
+.Login {
+    width: 50%;
+    color: #3CC2F5;
+    border-color: #3CC2F5;
+    border-radius: 10px;
+    background-color: #F65E87;
+    max-width: 960px;
+    margin-top: 2rem;
+    padding-top: 0 20px;
+    text-align: center;
+}
+
+.Login:hover{
+    transform: scale(0.98);
+    border-color: #F65E87;
+    background-color: #3CC2F5;
+    color: #F65E87
+}
+
+.Ltext {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    padding: 0 20px;
+    color: #F65E87
+}
+.Ltext:hover{
+    color: #3CC2F5
+}
+/* Register styles */
+.Register{
+    margin-top: 2rem;
+    border-radius: 5px;
+    background-color: #f599b2;
+    color: #0680b1;
+}
+
+.Register:focus{
+    background-color: #F65E87;
+    color: #3CC2F5;
+}
+
+.Registerbtn{
+    width: 50%;
+    color: #3CC2F5;
+    border-color: #3CC2F5;
+    border-radius: 10px;
+    background-color: #f599b2;
+    max-width: 960px;
+    margin-top: 2rem;
+    padding-top: 0 20px;
+    text-align: center;
+}
+
+.Registerbtn:hover{
+    transform: scale(0.98);
+    border-color: #F65E87;
+    background-color: #3CC2F5;
+    color: #F65E87
+}
+/* booking styles */
+
+.Emptybook{
+    justify-content: center;
+    text-align: center;
+    margin-top: 2rem;
+    color: #F65E87;
+}
+
+.BookingBtn{
+    width: 50%;
+    color: #3CC2F5;
+    border-color: #3CC2F5;
+    border-radius: 10px;
+    background-color: #f599b2;
+    max-width: 960px;
+    margin-top: 2rem;
+    padding-top: 0 20px;
+    text-align: center;
+}
+
+.BookingBtn:hover{
+    transform: scale(0.98);
+    border-color: #F65E87;
+    background-color: #3CC2F5;
+    color: #F65E87
 }

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import Container from 'react-bootstrap/Container';
 import axios from 'axios'
 
 const Register = () => {
@@ -39,15 +40,15 @@ const Register = () => {
 
   return (
     <>
+    <Container style={{ width: '18rem', justifyContent: 'center' }}>
+      <h1 className='Ltext'>Register</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input type='text' name='name' value={name} onChange={handleChange} />
-        <label htmlFor="email">Email:</label>
-        <input type='text' name='email' value={email} onChange={handleChange} />
-        <label htmlFor="password">Password:</label>
-        <input type='password' name='password' value={password} onChange={handleChange} />
-        <button type='submit'>Register</button>
+        <input className='Register' type='text' name='name' value={name} onChange={handleChange} placeholder='name' />
+        <input className='Register'type='text' name='email' value={email} onChange={handleChange} placeholder='email'/>
+        <input className='Register'type='password' name='password' value={password} onChange={handleChange} placeholder='password'/>
+        <button type='submit' className='Registerbtn'>Register</button>
       </form>
+    </Container>
     </>
   )
 }

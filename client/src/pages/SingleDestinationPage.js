@@ -12,7 +12,6 @@ const SingleDestinationPage = ({ singleDestinations, createBooking }) => {
 
   const handleChange = (e) => {
     setSelectOption(e.target.value)
-    console.log(selectOption)
   }
 
   function handleClick() {
