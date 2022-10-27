@@ -19,12 +19,12 @@ const App = () => {
   const [user, setUser] = useState(false)
 
   useEffect(() => {
-    axios.get('/destinations')
+    axios.get('/api/destinations')
       .then(res => setDestinations(res.data))
   }, [])
 
   useEffect(() => {
-    axios.get('/auth')
+    axios.get('/api/auth')
       .then(res => {
         updateUser(res.data)
       });
@@ -33,22 +33,22 @@ const App = () => {
   
 
   const getSingleDestination = (id) => {
-    axios.get(`/destinations/${id}`)
+    axios.get(`/api/destinations/${id}`)
       .then(res => setSingleDestination(res.data))
   }
   
   const createBooking = (destinationId, optionId) =>{
-    axios.post('/bookings', {destination_id: destinationId, option_id: parseInt(optionId)})
+    axios.post('/api/bookings', {destination_id: destinationId, option_id: parseInt(optionId)})
       .then(res => setBookings(res.data))
   }
 
   useEffect(() => {
-    axios.get('/bookings')
+    axios.get('/api/bookings')
       .then(res => setBookings(res.data))
   }, [])
   
   const handleDelete = (id) => {
-    axios.delete(`/bookings/${id}`)
+    axios.delete(`/api/bookings/${id}`)
       .then(res => setBookings(res.data))
   }
 

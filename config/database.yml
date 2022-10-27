@@ -80,7 +80,6 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
+  production:
   <<: *default
-  database: roam_with_us_production
-  username: roam_with_us
-  password: <%= ENV["ROAM_WITH_US_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

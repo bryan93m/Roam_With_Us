@@ -5,7 +5,7 @@ import { FaSignOutAlt } from 'react-icons/fa'
 
 function NavBar({ updateUser }) {
     const handleLogout = () => {
-        axios.delete('/logout')
+        axios.delete('/api/logout')
             .then(res => {
                 updateUser(false)
             })
