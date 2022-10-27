@@ -1,8 +1,9 @@
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FaSignOutAlt } from 'react-icons/fa'
 
 
-function NavBar({updateUser}) {
+function NavBar({ updateUser }) {
     const handleLogout = () => {
         axios.delete('/logout')
             .then(res => {
@@ -11,27 +12,37 @@ function NavBar({updateUser}) {
     }
 
     return (
-        <nav className='nav'>
-                <ul>
-                    <CustomLink to='/' onClick={handleLogout}>Logout</CustomLink>
-                    <CustomLink to='/destinations'>Destinations</CustomLink>
-                    <CustomLink to='/about'>About</CustomLink>
-                    <CustomLink to='/bookings'>Bookings</CustomLink>
-                </ul>
-        </nav>
-    );
-}
-
-function CustomLink({to, children, ...props}){
-    const resolvedPath = useResolvedPath(to)
-    const isActive = useMatch({path: resolvedPath.pathname, end: true})
-    return (
-        <li className={isActive ? "active" : ""}>
-            <Link to={to} {...props}>
-                {children}
-            </Link>
-        </li>
+        <header className='header'>
+            <div className='logo'>
+                <Link to='/' onClick={handleLogout}>
+                    <FaSignOutAlt /> Logout
+                </Link>
+            </div>
+            <ul>
+                <li>
+                    <Link to=''>
+                        Home
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/destinations'>
+                        Destinations
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/bookings'>
+                        Bookings
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/about'>
+                        About
+                    </Link>
+                </li>
+            </ul>
+        </header>
     )
+
 }
 
 
