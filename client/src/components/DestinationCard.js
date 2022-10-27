@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
+
 
 
 function Destination({ destination, singleDestination }) {
@@ -15,14 +15,14 @@ function Destination({ destination, singleDestination }) {
     }
 
     return (
-        <Container style={{ width: '18rem', justifyContent: 'center' }}>
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={image_url} />
-                <Card.Body>
-                    <Card.Title onClick={handleSingleDestination} style={{ cursor: 'pointer' }} >Name: {name}</Card.Title>
+        <div className="item">
+            <Card className="DestinationCard" >
+                <Card.Img variant="top" src={image_url} className='DestImg' onClick={handleSingleDestination} style={{ cursor: 'pointer' }}/>
+                <Card.Body onClick={handleSingleDestination} style={{ cursor: 'pointer' }}>
+                    <Card.Title   >Name: {name}</Card.Title>
                 </Card.Body>
             </Card>
-        </Container>
+        </div>
     )
 }
 

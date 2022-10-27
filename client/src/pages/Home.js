@@ -4,14 +4,10 @@ import { Link } from 'react-router-dom'
 
 const Homepage = () => {
   return (
-    <div>
-      <h1>Welcome</h1>
-      <h2>Please Login or Register</h2>
-      <Link to="/login">
-        <button>Login</button>
-      </Link>
-      <Link to="/register">
-        <button>Register</button>
+    <div className='homePage'>
+      <h1 className='Roam'>Roam With Us</h1>
+      <Link to="/destinations" className='linkContainer'>
+        <h3 className='Link'>Desitinations</h3>
       </Link>
     </div>
   )
