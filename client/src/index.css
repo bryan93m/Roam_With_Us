@@ -263,7 +263,6 @@ h3 {
 }
 
 .item {
-    border: 1px, solid, #000;
     padding: 2rem;
     font-size: 2rem;
     text-align: center;
@@ -276,7 +275,6 @@ h3 {
     width: 18rem;
     height: 18rem;
     margin: 2rem;
-    border-radius: 10px;
     max-width: 960px;
     margin-top: 2rem;
     padding-top: 0 20px;
