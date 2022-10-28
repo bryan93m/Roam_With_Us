@@ -20,7 +20,7 @@ const Register = () => {
       email,
       password
     }
-    axios.post('/api/users', user)
+    axios.post('/api/signup', user)
     .then(res => {
       navigate('/')
     })

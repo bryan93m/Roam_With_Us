@@ -20,7 +20,7 @@ function NavBar({ updateUser }) {
             </div>
             <ul>
                 <li>
-                    <Link to=''>
+                    <Link to='/Homepage'>
                         Home
                     </Link>
                 </li>

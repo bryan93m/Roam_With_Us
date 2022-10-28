@@ -54,17 +54,16 @@ const App = () => {
 
   const updateUser = (user) => setUser(user)
 
-  if(!user) return <Login updateUser={updateUser}/>
   return (
     <>
       <NavBar updateUser={updateUser} />
       <Routes>
-        <Route exact path="/" element={<Homepage />} />
+        <Route path="/Homepage" element={<Homepage />} />
         <Route path='/destination/:id' element={<SingleDestinationPage singleDestinations={singleDestination} createBooking={createBooking} />} />
         <Route path="/about" element={<About />} />
         <Route path="/destinations" element={<Destinations destinations={destinations} singleDestination={getSingleDestination}/>} />
         <Route path="/bookings" element={<Bookings booking={bookings} deleteBooking={handleDelete}/>} />
-        <Route path="/login" element={<Login updateUser={updateUser}/>} />
+        <Route exact path="/" element={<Login updateUser={updateUser}/>} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </>

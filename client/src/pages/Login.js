@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 import axios from 'axios'
 import Container from 'react-bootstrap/Container';
 
@@ -25,7 +25,7 @@ const Login = ({updateUser, getBookings}) => {
     .then(res => {
       console.log(res.data)
       updateUser(res.data)
-      navigate('/')
+      navigate('/Homepage')
     }
     )}
 
@@ -41,7 +41,11 @@ const Login = ({updateUser, getBookings}) => {
       <form onSubmit={onSubmit} >
         <input type='text' name='email' value={email} onChange={handleChange} placeholder='Email' style={{marginTop:'5rem', width:'15rem', borderRadius:'3px'}}/>
         <input type='password' placeholder='password' name='password' value={password} onChange={handleChange} style={{marginTop:'5rem', width:'15rem', borderRadius:'3px'}}/>
-        <button type='submit' className='Login'>Login</button>   
+        <button type='submit' className='Login'>Login</button>
+        <p>OR</p>
+        <Link to='/register'>
+          <button className='Login'>Register</button>
+        </Link>
       </form>
       
     </Container>
