@@ -16,6 +16,12 @@ class BookingsController < ApplicationController
         render json: @booking, status: :created
     end
 
+    def update
+        @booking = current_user.bookings.find(params[:id])
+        @booking.update!(booking_params)
+        render json: @booking, status: :ok
+    end
+
     def destroy
         @booking = current_user.bookings.find(params[:id])
         @booking.destroy
