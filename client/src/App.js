@@ -29,27 +29,36 @@ const App = () => {
         updateUser(res.data)
       });
   }, [])
-  
-  
+
+
 
   const getSingleDestination = (id) => {
     axios.get(`/api/destinations/${id}`)
       .then(res => setSingleDestination(res.data))
   }
-  
-  const createBooking = (destinationId, optionId) =>{
-    axios.post('/api/bookings', {destination_id: destinationId, option_id: parseInt(optionId)})
-      .then(res => setBookings(res.data))
+
+  const createBooking = async (destinationId, optionId) => {
+    const resp = await axios.post('/api/bookings', { destination_id: destinationId, option_id: parseInt(optionId) });
+    setBookings(bookings => [...bookings, resp.data])
   }
 
   useEffect(() => {
     axios.get('/api/bookings')
       .then(res => setBookings(res.data))
   }, [])
-  
+
   const handleDelete = (id) => {
     axios.delete(`/api/bookings/${id}`)
       .then(res => setBookings(res.data))
+  }
+
+  const handleUpdate = async (id, destinationId, optionId) => {
+    const resp = await axios.put(`/api/bookings/${id}`, { destination_id: destinationId, option_id: parseInt(optionId) });
+
+    const updatedBookings = bookings.map((booking) =>
+      booking.id === resp.data.id ? resp.data : booking
+    );
+    setBookings(updatedBookings)
   }
 
   const updateUser = (user) => setUser(user)
@@ -61,9 +70,9 @@ const App = () => {
         <Route path="/Homepage" element={<Homepage />} />
         <Route path='/destination/:id' element={<SingleDestinationPage singleDestinations={singleDestination} createBooking={createBooking} />} />
         <Route path="/about" element={<About />} />
-        <Route path="/destinations" element={<Destinations destinations={destinations} singleDestination={getSingleDestination}/>} />
-        <Route path="/bookings" element={<Bookings booking={bookings} deleteBooking={handleDelete}/>} />
-        <Route exact path="/" element={<Login updateUser={updateUser}/>} />
+        <Route path="/destinations" element={<Destinations destinations={destinations} singleDestination={getSingleDestination} />} />
+        <Route path="/bookings" element={<Bookings bookings={bookings} deleteBooking={handleDelete} updateBooking={handleUpdate} />} />
+        <Route exact path="/" element={<Login updateUser={updateUser} />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </>
