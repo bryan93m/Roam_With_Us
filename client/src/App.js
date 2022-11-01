@@ -47,9 +47,11 @@ const App = () => {
       .then(res => setBookings(res.data))
   }, [])
 
-  const handleDelete = (id) => {
-    axios.delete(`/api/bookings/${id}`)
-      .then(res => setBookings(res.data))
+  const handleDelete = async (id) => {
+    const resp = await axios.delete(`/api/bookings/${id}`)
+
+    const filterdList = bookings.filter(booking => booking.id !== id);
+    setBookings(filterdList);
   }
 
   const handleUpdate = async (id, destinationId, optionId) => {
