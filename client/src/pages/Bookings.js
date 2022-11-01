@@ -12,14 +12,11 @@ const Bookings = ({ bookings, deleteBooking, updateBooking }) => {
     updateBooking(id, destinationId, optionId)
   }
 
-  const singleBookingCompoents = bookings.map(singleBooking => <DisplayAllBookings key={singleBooking.id} singleBooking={singleBooking} deleteBooking={handleDelete} updateBooking={handleUpdate} />);
-
-  if (bookings.size === 0) return <h1 className='Emptybook'>Come On Book Something, Roam With Us Baby</h1>
-
+  if (bookings.length === 0) return <h1 className='Emptybook'>Come On Book Something, Roam With Us Baby</h1>
 
   return (
     <>
-      {singleBookingCompoents}
+      {bookings.map(singleBooking => <DisplayAllBookings key={singleBooking.id} singleBooking={singleBooking} deleteBooking={handleDelete} updateBooking={handleUpdate} />)}
     </>
   )
 }

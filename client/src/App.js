@@ -37,9 +37,9 @@ const App = () => {
       .then(res => setSingleDestination(res.data))
   }
 
-  const createBooking = (destinationId, optionId) => {
-    axios.post('/api/bookings', { destination_id: destinationId, option_id: parseInt(optionId) })
-      .then(res => setBookings(res.data))
+  const createBooking = async (destinationId, optionId) => {
+    const resp = await axios.post('/api/bookings', { destination_id: destinationId, option_id: parseInt(optionId) });
+    setBookings(bookings => [...bookings, resp.data])
   }
 
   useEffect(() => {
@@ -52,12 +52,13 @@ const App = () => {
       .then(res => setBookings(res.data))
   }
 
-  const handleUpdate = (id, destinationId, optionId) => {
-    console.log(id)
-    console.log(destinationId)
-    console.log(optionId)
-    axios.put(`/api/bookings/${id}`, { destination_id: destinationId, option_id: parseInt(optionId) })
-      .then(res => console.log(res.data))
+  const handleUpdate = async (id, destinationId, optionId) => {
+    const resp = await axios.put(`/api/bookings/${id}`, { destination_id: destinationId, option_id: parseInt(optionId) });
+
+    const updatedBookings = bookings.map((booking) =>
+      booking.id === resp.data.id ? resp.data : booking
+    );
+    setBookings(updatedBookings)
   }
 
   const updateUser = (user) => setUser(user)
