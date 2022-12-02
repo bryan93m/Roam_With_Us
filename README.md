@@ -1,25 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+###To View Application
+- rails bundle install
+- rails db:create db:migrate db:seed
+- rails s
+####Or Go To
+- https://roam-with-us.onrender.com
 
-Things you may want to cover:
+###Users
+- Can create Account
+- Sign in
+- View a package and options
+- Select an Option and Book a package
+- update options in Bookings
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
 
 * ...
 # Roam_With_Us
